@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}User Information{% endblock %}
+
+{% block main %}
+<h1 class="text-center">User Information</h1>
+
+<div class="row justify-content-center m-2">
+    <div class="col-md-8">
+        <ul class="list-group">
+            <li class="list-group-item">Username: {{user.username}}</li>
+            <li class="list-group-item">Email: {{user.email}}</li>
+            <li class="list-group-item">First name: {{user.first_name}}</li>
+            <li class="list-group-item">Last name: {{user.last_name}}</li>
+        </ul>
+        <h2 class="mt-4">Feedback:</h2>
+        <ul class="list-group">   
+            {% for fb in user.feedback %}
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <div class="fw-bold"><a href="/feedback/{{fb.id}}/update">{{fb.title}}</a></div>
+                  {{fb.text}}
+                </div>
+                <form action="/feedback/{{fb.id}}/delete" method="post">
+                    <button type="submit" class="btn btn-sm btn-primary rounded-pill">Delete</button>
+                </form>
+              </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+
+<div class="row m-2 justify-content-center">
+    <div class="col-md-8 text-center">
+        <a href="/users/{{user.username}}/feedback/add" class="btn btn-outline-secondary">New feedback</a>
+        <form action="/users/{{user.username}}/delete" class="mt-3" method="POST">
+            <button class="btn btn-secondary">Delete User</button>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

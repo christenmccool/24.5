@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+<h1 class="text-center">Welcome!</h1>
+
+{% if session['username'] %}
+<div class="d-grid gap-2 col-6 my-3 mx-auto">
+    <a href="/logout" class="btn btn-primary">Log-out</a>
+</div>
+
+{% else %}
+<div class="d-grid gap-2 col-6 my-3 mx-auto">
+    <a href="/login" class="btn btn-primary">Log-in</a>
+    <a href="/register" class="btn btn-primary">Register</a>
+</div>
+
+{% endif %}
+
+
+{% endblock %}
